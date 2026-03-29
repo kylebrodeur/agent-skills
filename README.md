@@ -59,6 +59,15 @@ pnpm analyze:dupes         # Find duplicates
 
 ---
 
+## Claude Code Hooks
+
+The setup script creates hooks that automatically run analysis tools:
+
+- **PreToolUse** - Runs setup if needed before tool execution
+- **PostToolUse** - Generates summary reports after analysis
+
+---
+
 ## Agent Integration
 
 The `codebase-analysis` agent can be added to your project:
