@@ -1,0 +1,40 @@
+{
+  "name": "Agent Skills",
+  "description": "A collection of Claude Code and GitHub Copilot agent skills for codebase analysis",
+  "skills": [
+    {
+      "name": "duplicate-detection",
+      "path": "packages/analysis-agent/skills/duplicate-detection/SKILL.md",
+      "description": "Find copy-pasted code blocks using jscpd",
+      "tags": ["code-quality", "duplicate-detection"]
+    },
+    {
+      "name": "dead-code-analysis",
+      "path": "packages/analysis-agent/skills/dead-code-analysis/SKILL.md",
+      "description": "Find unused exports, types, and dependencies using knip",
+      "tags": ["code-quality", "dead-code"]
+    },
+    {
+      "name": "analysis-orchestrator",
+      "path": "packages/analysis-agent/skills/analysis-orchestrator/SKILL.md",
+      "description": "Run all tools and synthesize findings",
+      "tags": ["orchestration", "analysis"]
+    }
+  ],
+  "agents": [
+    {
+      "name": "codebase-analysis",
+      "path": "packages/analysis-agent/agents/codebase-analysis.md",
+      "description": "Orchestrates static analysis tools for codebase health",
+      "skills": ["duplicate-detection", "dead-code-analysis", "analysis-orchestrator"]
+    }
+  ],
+  "keywords": [
+    "claude-code",
+    "github-copilot",
+    "code-analysis",
+    "dead-code",
+    "duplicate-detection",
+    "architecture"
+  ]
+}

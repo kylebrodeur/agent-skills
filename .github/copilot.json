@@ -1,0 +1,13 @@
+{
+  "agents": [
+    {
+      "name": "codebase-analysis",
+      "description": "Runs static analysis tools to detect dead code, architectural violations, and duplicate code",
+      "skills": [
+        "skills/duplicate-detection/SKILL.md",
+        "skills/dead-code-analysis/SKILL.md",
+        "skills/analysis-orchestrator/SKILL.md"
+      ]
+    }
+  ]
+}

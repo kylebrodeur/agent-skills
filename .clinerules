@@ -1,0 +1,39 @@
+# Project: Agent Skills - Claude Code Agent Skills Monorepo
+
+## Structure
+This monorepo uses pnpm workspaces with the following structure:
+
+```
+packages/
+└── analysis-agent/
+    ├── agents/       # Claude Code and Copilot agents
+    ├── skills/       # Reusable SKILL.md files
+    ├── scripts/      # CLI scripts for analysis
+    ├── templates/    # Configuration templates
+    └── .agentrc.json # Package metadata
+```
+
+## Skills
+Each skill is a `SKILL.md` file with the following frontmatter:
+
+```markdown
+---
+name: skill-name
+description: What this skill does
+compatibility: What it requires
+user-invokable: true/false
+argument-hint: How to use it
+metadata:
+  author: author-name
+  version: "1.0"
+---
+```
+
+## Usage
+To use skills in another project:
+1. Copy `packages/analysis-agent/.agent` to your project
+2. Run `bash .agent/scripts/setup.sh`
+3. Run `pnpm install`
+
+## Agent Integration
+Agents go in `.claude/agents/` or `.github/agents/` and reference skills via paths.

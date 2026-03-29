@@ -1,8 +1,16 @@
 {
   "name": "@agent-skills/codebase-analysis",
   "version": "1.0.0",
-  "description": "Codebase analysis skills for Claude Code - find duplicate code, dead code, and architecture violations",
+  "description": "Codebase analysis skills for Claude Code and GitHub Copilot - find duplicate code, dead code, and architecture violations",
   "main": "agents/codebase-analysis.md",
+  "type": "module",
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "analyze:all": "bash scripts/run-analysis.sh",
+    "analyze:dead": "knip",
+    "analyze:dupes": "jscpd src",
+    "analyze:deps": "depcruise src --config templates/.dependency-cruiser.cjs --output-type err"
+  },
   "skills": [
     "skills/duplicate-detection/SKILL.md",
     "skills/dead-code-analysis/SKILL.md",
@@ -17,12 +25,23 @@
   "keywords": [
     "claude",
     "claude-code",
+    "copilot",
+    "github-copilot",
     "agent",
     "code-analysis",
     "dead-code",
     "duplicate-detection",
-    "architecture"
+    "architecture",
+    "monorepo"
   ],
   "author": "kylebrodeur",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kylebrodeur/agent-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kylebrodeur/agent-skills/issues"
+  },
+  "homepage": "https://github.com/kylebrodeur/agent-skills#readme"
 }

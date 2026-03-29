@@ -1,15 +1,16 @@
 # Agent Skills
 
-A collection of Claude Code agent skills and utilities. Currently includes tools for codebase analysis.
+A collection of Claude Code and GitHub Copilot agent skills for codebase analysis - find duplicate code, dead code, and architecture violations.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-4183C4)](https://claude.ai/code)
+[![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-Compatible-4183C4)](https://github.com/features/copilot)
 
 ---
 
 ## Overview
 
-This monorepo contains reusable **Claude Code skills** - predefined workflows and analysis tools that you can invoke via slash commands or automatically through agents.
+This monorepo contains reusable **Claude Code skills** and **GitHub Copilot agents** - predefined workflows and analysis tools that you can invoke via slash commands or automatically through agents.
 
 ### Current Skills
 
@@ -19,6 +20,19 @@ This monorepo contains reusable **Claude Code skills** - predefined workflows an
 | **Dead Code Analysis** | Find unused exports, types, and dependencies using `knip` |
 | **Architecture Validation** | Check import rules and circular dependencies using `dependency-cruiser` |
 | **Analysis Orchestrator** | Run all tools and synthesize findings |
+
+---
+
+## Supported Projects
+
+| Project Type | Entry Points | Notes |
+|--------------|--------------|-------|
+| **Node.js** | `src/index.ts`, `src/main.ts` | Service → Action → Handler patterns |
+| **Next.js (App Router)** | `app/page.tsx`, `app/layout.tsx` | Files in `app/` are routing entry points |
+| **Next.js (Pages Router)** | `pages/_app.tsx`, `pages/_document.tsx` | Legacy routing |
+| **React Libraries** | `src/index.ts` | Component library patterns |
+| **shadcn/ui** | - | Components in `components/ui/` are auto-generated |
+| **Generic TS/JS** | - | Works with any structure |
 
 ---
 
@@ -64,7 +78,25 @@ pnpm analyze:dupes         # Find duplicates
 The setup script creates hooks that automatically run analysis tools:
 
 - **PreToolUse** - Runs setup if needed before tool execution
-- **PostToolUse** - Generates summary reports after analysis
+- Automatically detects when config files are missing
+
+---
+
+## GitHub Copilot Integration
+
+This agent works with GitHub Copilot:
+
+1. Copy the agent file to your project:
+```bash
+cp packages/analysis-agent/agents/codebase-analysis.md .github/agents/
+```
+
+2. Configure Copilot to use the agent in `.github/copilot.json`:
+```json
+{
+  "agents": [".github/agents/codebase-analysis.md"]
+}
+```
 
 ---
 
@@ -79,6 +111,18 @@ cp packages/analysis-agent/agents/codebase-analysis.md .claude/agents/
 # For GitHub Copilot (.github/agents/)
 cp packages/analysis-agent/agents/codebase-analysis.md .github/agents/
 ```
+
+---
+
+## Configuration Files
+
+The setup script creates the following configuration files:
+
+- `.jscpd.json` - Duplicate code detection settings
+- `knip.json` - Dead code analysis settings
+- `.dependency-cruiser.cjs` - Architecture validation rules
+
+See the [templates](packages/analysis-agent/templates/) for examples.
 
 ---
 

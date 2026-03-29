@@ -15,15 +15,15 @@ jobs:
       - name: Validate structure
         run: |
           echo "Checking required files..."
-          [ -f .agent/skills/duplicate-detection/SKILL.md ] || exit 1
-          [ -f .agent/skills/dead-code-analysis/SKILL.md ] || exit 1
-          [ -f .agent/skills/analysis-orchestrator/SKILL.md ] || exit 1
-          [ -f .agent/agents/codebase-analysis.md ] || exit 1
+          [ -f packages/analysis-agent/skills/duplicate-detection/SKILL.md ] || exit 1
+          [ -f packages/analysis-agent/skills/dead-code-analysis/SKILL.md ] || exit 1
+          [ -f packages/analysis-agent/skills/analysis-orchestrator/SKILL.md ] || exit 1
+          [ -f packages/analysis-agent/agents/codebase-analysis.md ] || exit 1
           echo "All required files present!"
 
       - name: Validate SKILL.md files
         run: |
-          for file in .agent/skills/*/SKILL.md; do
+          for file in packages/analysis-agent/skills/*/SKILL.md; do
             echo "Checking $file..."
             if [ ! -s "$file" ]; then
               echo "ERROR: $file is empty or missing"

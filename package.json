@@ -1,28 +1,43 @@
 {
-  "name": "codebase-analysis-agent",
+  "name": "agent-skills",
   "version": "1.0.0",
-  "description": "Reusable Claude skills and agents for codebase health analysis",
+  "description": "A collection of Claude Code and GitHub Copilot agent skills for codebase analysis",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "setup": "bash packages/analysis-agent/scripts/setup.sh",
     "analyze:all": "bash packages/analysis-agent/scripts/run-analysis.sh",
-    "analyze:deps": "depcruise src --config packages/analysis-agent/templates/.dependency-cruiser.cjs --output-type err",
     "analyze:dead": "knip",
-    "analyze:dupes": "jscpd src"
+    "analyze:dupes": "jscpd src",
+    "analyze:deps": "depcruise src"
   },
   "keywords": [
     "claude",
     "claude-code",
+    "copilot",
+    "github-copilot",
     "agent",
     "code-analysis",
     "dead-code",
-    "duplicate-detection"
+    "duplicate-detection",
+    "architecture",
+    "monorepo"
   ],
-  "author": "uofdigital",
+  "author": "kylebrodeur",
   "license": "MIT",
   "packageManager": "pnpm@10.24.0",
   "engines": {
     "node": ">=20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kylebrodeur/agent-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kylebrodeur/agent-skills/issues"
+  },
+  "homepage": "https://github.com/kylebrodeur/agent-skills#readme"
 }
