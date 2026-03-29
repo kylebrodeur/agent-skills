@@ -1,0 +1,15 @@
+{
+  "skills": [
+    "skills/duplicate-detection/SKILL.md",
+    "skills/dead-code-analysis/SKILL.md",
+    "skills/analysis-orchestrator/SKILL.md"
+  ],
+  "agents": [
+    "agents/codebase-analysis.md"
+  ],
+  "templates": {
+    "knip": "templates/knip.json",
+    "jscpd": "templates/jscpd.json",
+    "depcruise": "templates/depcruise.cjs"
+  }
+}

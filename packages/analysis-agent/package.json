@@ -1,0 +1,28 @@
+{
+  "name": "@agent-skills/codebase-analysis",
+  "version": "1.0.0",
+  "description": "Codebase analysis skills for Claude Code - find duplicate code, dead code, and architecture violations",
+  "main": "agents/codebase-analysis.md",
+  "skills": [
+    "skills/duplicate-detection/SKILL.md",
+    "skills/dead-code-analysis/SKILL.md",
+    "skills/analysis-orchestrator/SKILL.md"
+  ],
+  "files": [
+    "agents",
+    "skills",
+    "templates",
+    "scripts"
+  ],
+  "keywords": [
+    "claude",
+    "claude-code",
+    "agent",
+    "code-analysis",
+    "dead-code",
+    "duplicate-detection",
+    "architecture"
+  ],
+  "author": "kylebrodeur",
+  "license": "MIT"
+}

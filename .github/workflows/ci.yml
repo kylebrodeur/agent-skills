@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate structure
+        run: |
+          echo "Checking required files..."
+          [ -f .agent/skills/duplicate-detection/SKILL.md ] || exit 1
+          [ -f .agent/skills/dead-code-analysis/SKILL.md ] || exit 1
+          [ -f .agent/skills/analysis-orchestrator/SKILL.md ] || exit 1
+          [ -f .agent/agents/codebase-analysis.md ] || exit 1
+          echo "All required files present!"
+
+      - name: Validate SKILL.md files
+        run: |
+          for file in .agent/skills/*/SKILL.md; do
+            echo "Checking $file..."
+            if [ ! -s "$file" ]; then
+              echo "ERROR: $file is empty or missing"
+              exit 1
+            fi
+          done
+          echo "All SKILL.md files valid!"

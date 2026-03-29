@@ -1,0 +1,28 @@
+{
+  "name": "codebase-analysis-agent",
+  "version": "1.0.0",
+  "description": "Reusable Claude skills and agents for codebase health analysis",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "bash packages/analysis-agent/scripts/setup.sh",
+    "analyze:all": "bash packages/analysis-agent/scripts/run-analysis.sh",
+    "analyze:deps": "depcruise src --config packages/analysis-agent/templates/.dependency-cruiser.cjs --output-type err",
+    "analyze:dead": "knip",
+    "analyze:dupes": "jscpd src"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "agent",
+    "code-analysis",
+    "dead-code",
+    "duplicate-detection"
+  ],
+  "author": "uofdigital",
+  "license": "MIT",
+  "packageManager": "pnpm@10.24.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

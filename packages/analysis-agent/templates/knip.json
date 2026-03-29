@@ -1,0 +1,31 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "entry": ["src/index.ts", "src/main.ts", "app/router.tsx", "app/page.tsx"],
+  "project": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "hooks/**/*.ts",
+    "hooks/**/*.tsx"
+  ],
+  "ignore": [
+    "src/**/__tests__/**",
+    "src/**/*.test.ts",
+    "src/**/*.test.js",
+    "src/**/*.d.ts",
+    "src/**/types.ts",
+    "components/ui/**"
+  ],
+  "ignoreExportsUsedInFile": true,
+  "ignoreBinaries": ["next", "vite", "react", "node", "tsup", "rolldown"],
+  "rules": {
+    "files": "error",
+    "exports": "error",
+    "types": "error",
+    "duplicates": "warn",
+    "dependencies": "warn"
+  }
+}
