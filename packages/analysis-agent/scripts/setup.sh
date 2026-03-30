@@ -120,14 +120,14 @@ create_claude_hook() {
 
   cat > .claude/hooks/PreToolUse << 'HOOKEOF'
 #!/usr/bin/env bash
-# PreToolUse hook for agent-skills
+# PreToolUse hook for codebase-analysis
 # Automatically runs setup if config files are missing
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 if [ -f ".agentrc.json" ]; then
   # Check if required config files exist
   if [ ! -f ".jscpd.json" ] || [ ! -f "knip.json" ]; then
-    echo "Running agent-skills setup..."
+    echo "Running codebase-analysis setup..."
     bash .agent/scripts/setup.sh 2>/dev/null
   fi
 fi

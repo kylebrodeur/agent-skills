@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Agent Skills CLI
- * Install and manage codebase analysis skills
+ * Codebase Analysis CLI
+ * Install and manage codebase analysis and refactoring tools
  */
 
 const { spawn } = require('child_process');
@@ -33,18 +33,18 @@ function runScript(scriptName, args = []) {
 
 function showHelp() {
   console.log(`
-Agent Skills CLI - Install and manage codebase analysis
+Codebase Analysis CLI - Install and manage codebase analysis
 
-Usage: npx agent-skills <command>
+Usage: npx codebase-analysis <command>
 
 Commands:
-  install    Install agent skills to current project
+  install    Install codebase analysis to current project
   check      Check if config files are present
   help       Show this help message
 
 Examples:
-  npx agent-skills install    # Run setup script
-  npx agent-skills check      # Verify installation
+  npx codebase-analysis install    # Run setup script
+  npx codebase-analysis check      # Verify installation
 
 After installation, use pnpm scripts:
   pnpm analyze:all            # Run all analyses
@@ -67,7 +67,7 @@ function checkConfigs() {
   } else {
     console.log('✗ Missing config files:');
     missing.forEach(file => console.log(`  - ${file}`));
-    console.log('\nRun: npx agent-skills install');
+    console.log('\nRun: npx codebase-analysis install');
     process.exit(1);
   }
 }

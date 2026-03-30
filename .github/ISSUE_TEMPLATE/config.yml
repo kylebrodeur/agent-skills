@@ -1,5 +1,5 @@
 blank_issues_enabled: true
 contact_links:
   - name: Ask a question
-    url: https://github.com/kylebrodeur/agent-skills/discussions
+    url: https://github.com/kylebrodeur/codebase-analysis/discussions
     about: Ask questions and discuss with other community members

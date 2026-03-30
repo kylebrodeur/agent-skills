@@ -1,7 +1,7 @@
 {
-  "name": "agent-skills",
+  "name": "codebase-analysis",
   "version": "1.0.0",
-  "description": "A collection of Claude Code and GitHub Copilot agent skills for codebase analysis",
+  "description": "A collection of Claude Code and GitHub Copilot agent skills for codebase analysis and refactoring",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -21,6 +21,7 @@
     "github-copilot",
     "agent",
     "code-analysis",
+    "refactoring",
     "dead-code",
     "duplicate-detection",
     "architecture",
@@ -34,10 +35,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kylebrodeur/agent-skills.git"
+    "url": "https://github.com/kylebrodeur/codebase-analysis.git"
   },
   "bugs": {
-    "url": "https://github.com/kylebrodeur/agent-skills/issues"
+    "url": "https://github.com/kylebrodeur/codebase-analysis/issues"
   },
-  "homepage": "https://github.com/kylebrodeur/agent-skills#readme"
+  "homepage": "https://github.com/kylebrodeur/codebase-analysis#readme"
 }

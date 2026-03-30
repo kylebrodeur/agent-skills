@@ -1,12 +1,12 @@
-# Agent Skills
+# Codebase Analysis & Refactoring
 
-A collection of Claude Code skills, skills.sh skills, and GitHub Copilot agents for codebase analysis - find duplicate code, dead code, and architecture violations.
+Claude Code skills and plugins for codebase analysis - detect duplication, find dead code, validate architecture, and guide refactoring.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-4183C4)](https://claude.ai/code)
 [![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-Compatible-4183C4)](https://github.com/features/copilot)
 [![skills.sh](https://img.shields.io/badge/skills.sh-Compatible-4183C4)](https://skills.sh)
-[![CLI](https://img.shields.io/badge/CLI-Compatible-4183C4)](https://github.com/kylebrodeur/agent-skills#cli)
+[![CLI](https://img.shields.io/badge/CLI-Compatible-4183C4)](https://github.com/kylebrodeur/codebase-analysis#cli)
 [![pnpm](https://img.shields.io/badge/pnpm-10.24.0-FFA500.svg)](https://pnpm.io)
 [![Node.js](https://img.shields.io/badge/Node.js-20+-478C00.svg)](https://nodejs.org)
 
@@ -14,7 +14,7 @@ A collection of Claude Code skills, skills.sh skills, and GitHub Copilot agents 
 
 ## Overview
 
-This monorepo contains reusable **Claude Code skills**, **skills.sh** skills, and **GitHub Copilot agents** for codebase analysis. Each skill is a reusable workflow that can be invoked via slash commands or automatically through agents.
+This repository contains reusable **Claude Code skills**, **skills.sh** skills, and **GitHub Copilot agents** for codebase analysis and refactoring. Each skill helps identify issues and guides the refactoring process.
 
 ### What's Included
 
@@ -23,7 +23,7 @@ This monorepo contains reusable **Claude Code skills**, **skills.sh** skills, an
 | **Duplicate Detection** | Find copy-pasted code blocks using `jscpd` |
 | **Dead Code Analysis** | Find unused exports, types, and dependencies using `knip` |
 | **Architecture Validation** | Check import rules and circular dependencies using `dependency-cruiser` |
-| **Analysis Orchestrator** | Run all tools and synthesize findings |
+| **Analysis Orchestrator** | Run all tools and synthesize findings for refactoring |
 
 ### Format Support
 
@@ -61,13 +61,13 @@ helperFn            function  src/utils/helpers.ts:18:17
 ### Install as skills (skills.sh)
 
 ```bash
-npx skills add kylebrodeur/agent-skills
+npx skills add kylebrodeur/codebase-analysis
 ```
 
 ### Install as Claude Code plugin
 
 ```bash
-claude plugin install agent-skills@kylebrodeur
+claude plugin install codebase-analysis@kylebrodeur
 ```
 
 Or manually copy `.agent/` folder to `~/.claude/plugins/` or your project's `.claude/plugins/`.
@@ -79,7 +79,7 @@ Or manually copy `.agent/` folder to `~/.claude/plugins/` or your project's `.cl
 ### Install as skills (skills.sh)
 
 ```bash
-npx skills add kylebrodeur/agent-skills
+npx skills add kylebrodeur/codebase-analysis
 ```
 
 ### Manual installation
@@ -99,13 +99,13 @@ pnpm install
 ### Install as skills (skills.sh)
 
 ```bash
-npx skills add kylebrodeur/agent-skills
+npx skills add kylebrodeur/codebase-analysis
 ```
 
 ### Install as Claude Code plugin
 
 ```bash
-claude plugin install agent-skills@kylebrodeur
+claude plugin install codebase-analysis@kylebrodeur
 ```
 
 ### Manual installation (all platforms)
@@ -125,9 +125,9 @@ pnpm install
 A simple CLI is available for common tasks:
 
 ```bash
-npx agent-skills install    # Run setup script
-npx agent-skills check      # Check config files
-npx agent-skills help       # Show all commands
+npx codebase-analysis install    # Run setup script
+npx codebase-analysis check      # Check config files
+npx codebase-analysis help       # Show all commands
 ```
 
 After installation, use pnpm scripts:
@@ -140,15 +140,45 @@ pnpm analyze:deps:validate  # Check architecture
 
 ---
 
-## Adding Your Own Skills
+## Refactoring Process
 
-The setup script creates these files in your project:
+This plugin supports a systematic refactoring process:
 
-- `.jscpd.json` - Duplicate code detection
-- `knip.json` - Dead code analysis
-- `.dependency-cruiser.cjs` - Architecture validation
+### Overview
 
-Each template includes project-specific defaults for Next.js, React, and Node.js.
+1. **Detect duplication** - Use `pnpm analyze:dupes` and `pnpm analyze:dead` to find duplicate logic
+2. **Extract to shared module** - Create `lib/utils.ts` (client-side) or `lib/shared.ts` (shared)
+3. **Update consumers** - Replace duplicate code with imports from the shared module
+4. **Verify correctness** - Run `pnpm analyze:all` to confirm no regressions
+5. **Document changes** - Update TODO-REVIEW.md with architectural improvements
+
+### Process Steps
+
+| Step | Command/Action |
+|------|----------------|
+| 1. Identify duplicates | `pnpm analyze:dupes` + `pnpm analyze:dead` |
+| 2. Extract utility | Create new module in `lib/` directory |
+| 3. Update consumers | Replace inline code with imports |
+| 4. Verify | `pnpm analyze:all` + tests + typecheck |
+| 5. Document | Update TODO-REVIEW.md |
+
+### Anti-Patterns to Avoid
+
+- Creating too many small modules - group related functionality
+- Circular dependencies - ensure import graph is acyclic
+- Mixing concerns - keep client/server code separate
+- Over-engineering - only extract when there are 2+ consumers
+- Premature abstraction - wait until pattern is clear
+
+### Checksum for Refactoring
+
+Before merging, verify:
+- No duplicate code remains in original files
+- All imports use the shared module
+- Typecheck passes with no errors
+- All tests pass (80%+ coverage)
+- Linting passes
+- TODO-REVIEW.md updated
 
 ---
 
@@ -169,7 +199,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 This repository follows the [skills.sh plugin structure](https://skills.sh/anthropics/claude-plugins-official/plugin-structure):
 
 ```
-agent-skills/
+codebase-analysis/
 ├── .claude-plugin/
 │   └── plugin.json          # Plugin manifest
 ├── skills/                  # Skills directory
@@ -185,11 +215,11 @@ The `.claude-plugin/plugin.json` manifest defines your plugin:
 
 ```json
 {
-  "name": "agent-skills",
+  "name": "codebase-analysis",
   "version": "1.0.0",
-  "description": "Codebase analysis skills",
+  "description": "Codebase analysis and refactoring skills",
   "author": "kylebrodeur",
-  "repository": "https://github.com/kylebrodeur/agent-skills",
+  "repository": "https://github.com/kylebrodeur/codebase-analysis",
   "skills": {
     "duplicate-detection": "./skills/duplicate-detection",
     "dead-code-analysis": "./skills/dead-code-analysis",
