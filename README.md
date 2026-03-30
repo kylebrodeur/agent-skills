@@ -67,7 +67,7 @@ npx skills add kylebrodeur/codebase-analysis
 ### Install as Claude Code plugin
 
 ```bash
-claude plugin install codebase-analysis@kylebrodeur
+claude plugin install codebase-analysis@codebase-analysis
 ```
 
 Or manually copy `.agent/` folder to `~/.claude/plugins/` or your project's `.claude/plugins/`.
@@ -111,7 +111,7 @@ npx skills add kylebrodeur/codebase-analysis
 ### Install as Claude Code plugin
 
 ```bash
-claude plugin install codebase-analysis@kylebrodeur
+claude plugin install codebase-analysis@codebase-analysis
 ```
 
 ### Install as GitHub Copilot plugin
