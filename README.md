@@ -82,13 +82,24 @@ Or manually copy `.agent/` folder to `~/.claude/plugins/` or your project's `.cl
 
 ## GitHub Copilot
 
-### Install from GitHub repository
+### Manual installation
 
+GitHub Copilot CLI currently doesn't have a built-in plugin system like Claude Code. To use this agent with Copilot:
+
+1. Copy the agent file to your project:
 ```bash
-copilot plugin install kylebrodeur/codebase-analysis
+mkdir -p ../your-project/.github/agents
+cp packages/analysis-agent/agents/codebase-analysis.md ../your-project/.github/agents/
 ```
 
-This installs the plugin which includes both the agent and skills. Make sure you have the latest version of GitHub Copilot CLI with plugin support.
+2. Run setup (creates hooks automatically):
+```bash
+cd ../your-project
+bash .agent/scripts/setup.sh
+pnpm install
+```
+
+Note: Copilot plugin support is coming in future versions. For now, Copilot users can benefit from the setup scripts and config files.
 
 ---
 
