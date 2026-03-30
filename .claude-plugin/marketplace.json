@@ -1,0 +1,24 @@
+{
+  "name": "codebase-analysis",
+  "owner": {
+    "name": "kylebrodeur"
+  },
+  "plugins": [
+    {
+      "name": "codebase-analysis",
+      "source": {
+        "source": "github",
+        "repo": "kylebrodeur/codebase-analysis"
+      },
+      "description": "Codebase analysis and refactoring skills for duplicate detection, dead code, and architecture validation",
+      "version": "1.0.0",
+      "author": {
+        "name": "kylebrodeur"
+      },
+      "repository": "https://github.com/kylebrodeur/codebase-analysis",
+      "homepage": "https://github.com/kylebrodeur/codebase-analysis",
+      "license": "MIT",
+      "keywords": ["codebase-analysis", "refactoring", "dead-code", "duplicate-detection", "architecture", "knip", "jscpd", "dependency-cruiser"]
+    }
+  ]
+}
