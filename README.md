@@ -66,6 +66,12 @@ npx skills add kylebrodeur/codebase-analysis
 
 ### Install as Claude Code plugin
 
+First add the marketplace:
+```bash
+claude plugin marketplace add kylebrodeur/codebase-analysis
+```
+
+Then install the plugin:
 ```bash
 claude plugin install codebase-analysis@codebase-analysis
 ```
@@ -119,6 +125,8 @@ claude plugin install codebase-analysis@codebase-analysis
 ```bash
 copilot plugin install kylebrodeur/codebase-analysis
 ```
+
+Copilot plugins can be installed directly from the GitHub repo - no marketplace needed.
 
 ### Manual installation
 
