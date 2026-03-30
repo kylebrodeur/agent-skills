@@ -88,21 +88,7 @@ Or manually copy `.agent/` folder to `~/.claude/plugins/` or your project's `.cl
 copilot plugin install kylebrodeur/codebase-analysis
 ```
 
-This installs the plugin which includes both the agent and skills.
-
-### Manual installation
-
-1. Copy the plugin folder to your project:
-```bash
-cp -r packages/analysis-agent/.github ../your-project/
-```
-
-2. Run setup (creates hooks automatically):
-```bash
-cd ../your-project
-bash .agent/scripts/setup.sh
-pnpm install
-```
+This installs the plugin which includes both the agent and skills. Make sure you have the latest version of GitHub Copilot CLI with plugin support.
 
 ---
 
