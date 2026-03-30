@@ -5,7 +5,6 @@ compatibility: Requires pnpm. Generates HTML reports at /tmp/jscpd-report/html/i
 metadata:
   author: kylebrodeur
   version: "1.0"
-  platform: claude-code,copilot
 ---
 
 # Duplicate Code Detection

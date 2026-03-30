@@ -12,7 +12,7 @@ A collection of Claude Code and GitHub Copilot agent skills for codebase analysi
 
 ## Overview
 
-This monorepo contains reusable **Claude Code skills** and **GitHub Copilot agents** for codebase analysis. Each skill is a reusable workflow that can be invoked via slash commands or automatically through agents.
+This monorepo contains reusable **Claude Code skills**, **skills.sh** skills, and **GitHub Copilot agents** for codebase analysis. Each skill is a reusable workflow that can be invoked via slash commands or automatically through agents.
 
 ### What's Included
 
@@ -22,6 +22,16 @@ This monorepo contains reusable **Claude Code skills** and **GitHub Copilot agen
 | **Dead Code Analysis** | Find unused exports, types, and dependencies using `knip` |
 | **Architecture Validation** | Check import rules and circular dependencies using `dependency-cruiser` |
 | **Analysis Orchestrator** | Run all tools and synthesize findings |
+
+### Format Support
+
+This repository supports both **Claude Code skills** and **skills.sh** specification:
+
+| Feature | Claude Code | skills.sh |
+|---------|-------------|-----------|
+| Format | `SKILL.md` with YAML frontmatter | `SKILL.md` with YAML frontmatter |
+| Location | `.agent/skills/` | `skills/` at project root |
+| Non-standard fields | Supported (`user-invokable`, `argument-hint`) | Standard only (`name`, `description`, `compatibility`, `metadata`) |
 
 ### Example Output
 
@@ -78,16 +88,45 @@ pnpm analyze:dupes         # Find duplicates
 
 ---
 
-## Supported Projects
+---
 
-| Project Type | Entry Points | Notes |
-|--------------|--------------|-------|
-| **Node.js** | `src/index.ts`, `src/main.ts` | Service → Action → Handler |
-| **Next.js (App Router)** | `app/page.tsx`, `app/layout.tsx` | Routing entry points |
-| **Next.js (Pages Router)** | `pages/_app.tsx`, `pages/_document.tsx` | Legacy routing |
-| **React Libraries** | `src/index.ts` | Component library patterns |
-| **shadcn/ui** | - | Auto-generated components |
-| **Generic TS/JS** | - | Works with any structure |
+## Claude Code vs skills.sh
+
+| Feature | Claude Code | skills.sh |
+|---------|-------------|-----------|
+| **Location** | `.agent/skills/` in project | `skills/` at project root |
+| **Format** | `SKILL.md` with YAML frontmatter | `SKILL.md` with YAML frontmatter |
+| **Non-standard fields** | Supported (`user-invokable`, `argument-hint`) | Standard only (`name`, `description`, `compatibility`, `metadata`) |
+
+Both versions contain the same content — use the one that matches your platform.
+
+### Claude Code Skills
+
+Located at `.agent/skills/` in your project. Supports full Claude Code skill format including non-standard extensions:
+
+```yaml
+---
+name: duplicate-detection
+user-invokable: true
+argument-hint: "..."
+metadata: ...
+---
+```
+
+### skills.sh Format
+
+Located at `skills/` at project root. Uses the standard skills.sh specification:
+
+```yaml
+---
+name: duplicate-detection
+description: ...
+compatibility: ...
+metadata: ...
+---
+```
+
+## Supported Projects
 
 ---
 
