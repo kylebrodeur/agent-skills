@@ -56,78 +56,61 @@ helperFn            function  src/utils/helpers.ts:18:17
 
 ---
 
-## Claude Code Installation
+## Claude Code
 
-### With skills.sh (recommended - installs skills)
+### Install as skills (skills.sh)
 
 ```bash
 npx skills add kylebrodeur/agent-skills
 ```
 
-This installs the skills to `~/.claude/skills/agent-skills/`. Skills are available as `/dead`, `/dupes`, etc.
-
-### With Claude Code plugin system (installs full plugin)
+### Install as Claude Code plugin
 
 ```bash
 claude plugin install agent-skills@kylebrodeur
 ```
 
-Or manually copy `.agent/` folder:
-```bash
-# Global (user scope)
-cp -r packages/analysis-agent/.agent ~/.claude/plugins/agent-skills/
-
-# Or project-specific
-cp -r packages/analysis-agent/.agent ../your-project/.claude/plugins/agent-skills/
-```
-
-### Hook configuration
-
-When installed, the setup script creates `.claude/hooks/PreToolUse` for automatic configuration.
+Or manually copy `.agent/` folder to `~/.claude/plugins/` or your project's `.claude/plugins/`.
 
 ---
 
-## GitHub Copilot Installation
+## GitHub Copilot
 
-### With skills.sh (recommended - installs skills)
+### Install as skills (skills.sh)
 
 ```bash
 npx skills add kylebrodeur/agent-skills
 ```
 
-This installs the skills to the skills.sh registry format. For Copilot, also copy the agent file:
-```bash
-cp -r packages/analysis-agent/.agent .github/agents/
-```
-
 ### Manual installation
 
-1. Copy the agent file to your project:
-```bash
-mkdir -p ../your-project/.github/agents
-cp packages/analysis-agent/agents/codebase-analysis.md ../your-project/.github/agents/
-```
+Copy `.agent/` folder and run setup:
 
-2. Run setup (creates hooks automatically):
 ```bash
-cd ../your-project
-bash .agent/scripts/setup.sh
+cp -r packages/analysis-agent/.agent ../your-project/
+bash ../your-project/.agent/scripts/setup.sh
 pnpm install
 ```
-
-### Hook configuration
-
-The setup script creates `.github/hooks/hooks.json` with `preToolUse` hook for automatic configuration.
 
 ---
 
 ## Quick Start
 
+### Install as skills (skills.sh)
+
 ```bash
 npx skills add kylebrodeur/agent-skills
 ```
 
-Or manually copy `.agent/` and run setup:
+### Install as Claude Code plugin
+
+```bash
+claude plugin install agent-skills@kylebrodeur
+```
+
+### Manual installation (all platforms)
+
+Copy `.agent/` folder and run setup:
 
 ```bash
 cp -r packages/analysis-agent/.agent ../your-project/
@@ -157,34 +140,7 @@ pnpm analyze:deps:validate  # Check architecture
 
 ---
 
-## Claude Code vs skills.sh
-
-| Feature | Claude Code | skills.sh |
-|---------|-------------|-----------|
-| **Location** | `.agent/skills/` in project | `skills/` at project root |
-| **Format** | `SKILL.md` with YAML frontmatter | `SKILL.md` with YAML frontmatter |
-| **Non-standard fields** | Supported (`user-invokable`, `argument-hint`) | Standard only (`name`, `description`, `compatibility`, `metadata`) |
-| **Install** | Copy `.agent/` folder | `npx skills add owner/repo` |
-
-Both versions contain the same content — use the one that matches your platform.
-
-### Claude Code Skills
-
-Located at `.agent/skills/` in your project. Supports full Claude Code skill format including non-standard extensions.
-
-### skills.sh Format
-
-Located at `skills/` at project root. Uses the standard skills.sh specification. Install via:
-
-```bash
-npx skills add kylebrodeur/agent-skills
-```
-
-## Supported Projects
-
----
-
-## Configuration
+## Adding Your Own Skills
 
 The setup script creates these files in your project:
 
@@ -193,14 +149,6 @@ The setup script creates these files in your project:
 - `.dependency-cruiser.cjs` - Architecture validation
 
 Each template includes project-specific defaults for Next.js, React, and Node.js.
-
----
-
-## Claude Code Hooks
-
-When you run the setup script, it creates a `PreToolUse` hook at `.claude/hooks/PreToolUse` that:
-
-- Automatically runs setup if config files are missing
 
 ---
 
