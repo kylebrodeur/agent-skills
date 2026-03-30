@@ -85,6 +85,8 @@ bash .agent/scripts/setup.sh
 pnpm install
 ```
 
+The setup script creates hooks for both Claude Code (`.claude/hooks/PreToolUse`) and GitHub Copilot (`.github/hooks/hooks.json`) for automatic configuration when config files are missing.
+
 3. Run analysis:
 ```bash
 pnpm analyze:all           # Run all tools
@@ -152,6 +154,13 @@ cp packages/analysis-agent/agents/codebase-analysis.md .github/agents/
 ```
 
 Copilot will automatically discover the agent and make it available in your IDE.
+
+### Copilot Hooks
+
+When you run the setup script, it creates a `hooks.json` file at `.github/hooks/hooks.json` that:
+- Automatically runs setup if config files are missing (via `preToolUse` hook)
+
+Supported hook triggers: `sessionStart`, `sessionEnd`, `userPromptSubmitted`, `preToolUse`, `postToolUse`, `errorOccurred`.
 
 ---
 

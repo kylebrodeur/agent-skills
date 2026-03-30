@@ -110,7 +110,7 @@ install_deps() {
 }
 
 # Create Claude Code hook for automatic setup
-create_hook() {
+create_claude_hook() {
   echo ""
   echo "Creating Claude Code hook..."
 
@@ -137,11 +137,40 @@ HOOKEOF
   echo "  Created .claude/hooks/PreToolUse"
 }
 
+# Create GitHub Copilot hooks for automatic setup
+create_copilot_hook() {
+  echo ""
+  echo "Creating GitHub Copilot hook..."
+
+  if [ ! -d ".github/hooks" ]; then
+    mkdir -p .github/hooks
+  fi
+
+  cat > .github/hooks/hooks.json << 'HOOKJSONEOF'
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "type": "command",
+        "bash": "cd \"$(dirname \"${BASH_SOURCE[0]}\")/../..\" && [ -f \".claude-plugin/plugin.json\" ] && if [ ! -f \".jscpd.json\" ] || [ ! -f \"knip.json\" ]; then bash .agent/scripts/setup.sh 2>/dev/null; fi",
+        "cwd": ".",
+        "timeoutSec": 30
+      }
+    ]
+  }
+}
+HOOKJSONEOF
+
+  echo "  Created .github/hooks/hooks.json"
+}
+
 # Run the setup steps
 create_configs
 add_scripts
 install_deps
-create_hook
+create_claude_hook
+create_copilot_hook
 
 echo ""
 echo "=== Setup complete ==="
@@ -150,3 +179,7 @@ echo "Next steps:"
 echo "  1. Run: pnpm install"
 echo "  2. Run: pnpm analyze:all"
 echo "  3. Review output and update templates/*.json if needed"
+echo ""
+echo "Hooks created:"
+echo "  - .claude/hooks/PreToolUse (Claude Code)"
+echo "  - .github/hooks/hooks.json (GitHub Copilot)"
