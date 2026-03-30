@@ -6,6 +6,7 @@ A collection of Claude Code skills, skills.sh skills, and GitHub Copilot agents 
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-4183C4)](https://claude.ai/code)
 [![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-Compatible-4183C4)](https://github.com/features/copilot)
 [![skills.sh](https://img.shields.io/badge/skills.sh-Compatible-4183C4)](https://skills.sh)
+[![CLI](https://img.shields.io/badge/CLI-Compatible-4183C4)](https://github.com/kylebrodeur/agent-skills#cli)
 [![pnpm](https://img.shields.io/badge/pnpm-10.24.0-FFA500.svg)](https://pnpm.io)
 [![Node.js](https://img.shields.io/badge/Node.js-20+-478C00.svg)](https://nodejs.org)
 
@@ -93,6 +94,26 @@ pnpm analyze:all           # Run all tools
 pnpm analyze:deps:validate # Check architecture
 pnpm analyze:dead          # Find dead code
 pnpm analyze:dupes         # Find duplicates
+```
+
+---
+
+## CLI
+
+A simple CLI is available for common tasks:
+
+```bash
+npx agent-skills install    # Run setup script
+npx agent-skills check      # Check config files
+npx agent-skills help       # Show all commands
+```
+
+After installation, use pnpm scripts:
+```bash
+pnpm analyze:all            # Run all analyses
+pnpm analyze:dead           # Find dead code
+pnpm analyze:dupes          # Find duplicate code
+pnpm analyze:deps:validate  # Check architecture
 ```
 
 ---

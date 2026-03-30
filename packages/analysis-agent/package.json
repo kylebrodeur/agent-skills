@@ -4,6 +4,9 @@
   "description": "Codebase analysis skills for Claude Code and GitHub Copilot - find duplicate code, dead code, and architecture violations",
   "main": "agents/codebase-analysis.md",
   "type": "module",
+  "bin": {
+    "agent-skills": "./cli.cjs"
+  },
   "scripts": {
     "setup": "bash scripts/setup.sh",
     "analyze:all": "bash scripts/run-analysis.sh",
@@ -20,7 +23,8 @@
     "agents",
     "skills",
     "templates",
-    "scripts"
+    "scripts",
+    "cli.cjs"
   ],
   "keywords": [
     "claude",
