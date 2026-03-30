@@ -2,14 +2,11 @@
   "name": "codebase-analysis",
   "version": "1.0.0",
   "description": "Codebase analysis and refactoring skills for duplicate detection, dead code, and architecture validation",
-  "author": "kylebrodeur",
+  "author": {
+    "name": "kylebrodeur"
+  },
   "repository": "https://github.com/kylebrodeur/codebase-analysis",
   "homepage": "https://github.com/kylebrodeur/codebase-analysis",
   "license": "MIT",
-  "keywords": ["codebase-analysis", "refactoring", "dead-code", "duplicate-detection", "architecture", "knip", "jscpd", "dependency-cruiser"],
-  "skills": {
-    "duplicate-detection": "../skills/duplicate-detection",
-    "dead-code-analysis": "../skills/dead-code-analysis",
-    "analysis-orchestrator": "../skills/analysis-orchestrator"
-  }
+  "keywords": ["codebase-analysis", "refactoring", "dead-code", "duplicate-detection", "architecture", "knip", "jscpd", "dependency-cruiser"]
 }
