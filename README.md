@@ -56,44 +56,75 @@ helperFn            function  src/utils/helpers.ts:18:17
 
 ---
 
-## Quick Start
+## Claude Code Installation
 
-### Install via skills.sh CLI
+### With skills.sh (recommended)
 
 ```bash
 npx skills add kylebrodeur/agent-skills
 ```
 
-### Install Manually
+### Manual installation
 
-```bash
-git clone https://github.com/kylebrodeur/agent-skills.git
-cd agent-skills
-pnpm install
-```
-
-### Using in Your Project
-
-1. Copy the agent folder to your project:
+1. Copy the `.agent/` folder to your project:
 ```bash
 cp -r packages/analysis-agent/.agent ../your-project/
 ```
 
-2. Run setup in your project:
+2. Run setup:
 ```bash
 cd ../your-project
 bash .agent/scripts/setup.sh
 pnpm install
 ```
 
-The setup script creates hooks for both Claude Code (`.claude/hooks/PreToolUse`) and GitHub Copilot (`.github/hooks/hooks.json`) for automatic configuration when config files are missing.
+### Hook configuration
 
-3. Run analysis:
+The setup script automatically creates `.claude/hooks/PreToolUse` for automatic configuration.
+
+---
+
+## GitHub Copilot Installation
+
+### With skills.sh (recommended)
+
 ```bash
-pnpm analyze:all           # Run all tools
-pnpm analyze:deps:validate # Check architecture
-pnpm analyze:dead          # Find dead code
-pnpm analyze:dupes         # Find duplicates
+npx skills add kylebrodeur/agent-skills
+```
+
+### Manual installation
+
+1. Copy the agent file to your project:
+```bash
+mkdir -p ../your-project/.github/agents
+cp packages/analysis-agent/agents/codebase-analysis.md ../your-project/.github/agents/
+```
+
+2. Run setup (creates hooks automatically):
+```bash
+cd ../your-project
+bash .agent/scripts/setup.sh
+pnpm install
+```
+
+### Hook configuration
+
+The setup script creates `.github/hooks/hooks.json` with `preToolUse` hook for automatic configuration.
+
+---
+
+## Quick Start
+
+```bash
+npx skills add kylebrodeur/agent-skills
+```
+
+Or manually copy `.agent/` and run setup:
+
+```bash
+cp -r packages/analysis-agent/.agent ../your-project/
+bash ../your-project/.agent/scripts/setup.sh
+pnpm install
 ```
 
 ---
@@ -162,26 +193,6 @@ Each template includes project-specific defaults for Next.js, React, and Node.js
 When you run the setup script, it creates a `PreToolUse` hook at `.claude/hooks/PreToolUse` that:
 
 - Automatically runs setup if config files are missing
-- Detects when tools need to be configured
-
----
-
-## GitHub Copilot Integration
-
-The agent works with GitHub Copilot. Copy the agent file to `.github/agents/`:
-
-```bash
-cp packages/analysis-agent/agents/codebase-analysis.md .github/agents/
-```
-
-Copilot will automatically discover the agent and make it available in your IDE.
-
-### Copilot Hooks
-
-When you run the setup script, it creates a `hooks.json` file at `.github/hooks/hooks.json` that:
-- Automatically runs setup if config files are missing (via `preToolUse` hook)
-
-Supported hook triggers: `sessionStart`, `sessionEnd`, `userPromptSubmitted`, `preToolUse`, `postToolUse`, `errorOccurred`.
 
 ---
 
