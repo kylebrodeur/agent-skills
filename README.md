@@ -58,38 +58,46 @@ helperFn            function  src/utils/helpers.ts:18:17
 
 ## Claude Code Installation
 
-### With skills.sh (recommended)
+### With skills.sh (recommended - installs skills)
 
 ```bash
 npx skills add kylebrodeur/agent-skills
 ```
 
-### Manual installation
+This installs the skills to `~/.claude/skills/agent-skills/`. Skills are available as `/dead`, `/dupes`, etc.
 
-1. Copy the `.agent/` folder to your project:
+### With Claude Code plugin system (installs full plugin)
+
 ```bash
-cp -r packages/analysis-agent/.agent ../your-project/
+claude plugin install agent-skills@kylebrodeur
 ```
 
-2. Run setup:
+Or manually copy `.agent/` folder:
 ```bash
-cd ../your-project
-bash .agent/scripts/setup.sh
-pnpm install
+# Global (user scope)
+cp -r packages/analysis-agent/.agent ~/.claude/plugins/agent-skills/
+
+# Or project-specific
+cp -r packages/analysis-agent/.agent ../your-project/.claude/plugins/agent-skills/
 ```
 
 ### Hook configuration
 
-The setup script automatically creates `.claude/hooks/PreToolUse` for automatic configuration.
+When installed, the setup script creates `.claude/hooks/PreToolUse` for automatic configuration.
 
 ---
 
 ## GitHub Copilot Installation
 
-### With skills.sh (recommended)
+### With skills.sh (recommended - installs skills)
 
 ```bash
 npx skills add kylebrodeur/agent-skills
+```
+
+This installs the skills to the skills.sh registry format. For Copilot, also copy the agent file:
+```bash
+cp -r packages/analysis-agent/.agent .github/agents/
 ```
 
 ### Manual installation
