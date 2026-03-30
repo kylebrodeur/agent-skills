@@ -1,0 +1,15 @@
+{
+  "name": "agent-skills",
+  "version": "1.0.0",
+  "description": "Codebase analysis skills for duplicate detection, dead code, and architecture validation",
+  "author": "kylebrodeur",
+  "repository": "https://github.com/kylebrodeur/agent-skills",
+  "homepage": "https://github.com/kylebrodeur/agent-skills",
+  "license": "MIT",
+  "keywords": ["codebase-analysis", "dead-code", "duplicate-detection", "architecture", "knip", "jscpd", "dependency-cruiser"],
+  "skills": {
+    "duplicate-detection": "./skills/duplicate-detection",
+    "dead-code-analysis": "./skills/dead-code-analysis",
+    "analysis-orchestrator": "./skills/analysis-orchestrator"
+  }
+}
