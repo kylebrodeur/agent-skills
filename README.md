@@ -82,21 +82,31 @@ Or manually copy `.agent/` folder to `~/.claude/plugins/` or your project's `.cl
 
 ## GitHub Copilot
 
-### Plugin installation
+### Install from pre-release Copilot CLI
 
-The GitHub Copilot plugin system follows the same format as Claude Code. If your Copilot CLI supports plugins:
+GitHub Copilot's plugin system is in pre-release. To use it:
 
+1. **Install the Copilot CLI pre-release:**
+```bash
+gh extension install github/copilot-cli
+```
+
+2. **Install the plugin:**
 ```bash
 copilot plugin install kylebrodeur/codebase-analysis
 ```
 
-Or install as a skill using `skills.sh`:
+### Install via skills.sh
+
+Alternatively, install as a skill using the skills.sh CLI:
 
 ```bash
 npx skills add kylebrodeur/codebase-analysis
 ```
 
 ### Manual installation (all versions)
+
+If neither option works, copy the agent file manually:
 
 1. Copy the agent file to your project:
 ```bash
@@ -110,8 +120,6 @@ cd ../your-project
 bash .agent/scripts/setup.sh
 pnpm install
 ```
-
-Note: If the plugin command doesn't work, ensure you have the latest Copilot CLI. The plugin format is compatible with Claude Code's plugin structure.
 
 ---
 
